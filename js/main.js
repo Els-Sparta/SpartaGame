@@ -39,7 +39,7 @@ $(function(event){
         else if(board[y][x] === -1){
           context.beginPath();
           context.lineWidth = 5;
-          context.strokeStyle = "rgba(102, 102, 102, 1)";
+          context.strokeStyle = "red";
           context.moveTo(x*blockSize, y*blockSize);
           context.lineTo((x+1)*blockSize, (y+1)*blockSize);
           context.moveTo(x*blockSize, (y+1)*blockSize);
@@ -59,7 +59,13 @@ $(function(event){
   draw();
   //function checks if the new space is open or a wall
   function canMove(x, y){
-    return (y >= 0) && (y < board.length) && (x >= 0) && (x < board[y].length) && (board[y][x] != 1);
+    if ((y >= 0) && (y < board.length) && (x >= 0) && (x < board[y].length) && (board[y][x] != 1) && (board[y][x] != -1)){
+      return true;
+    }
+    else if(board[y][x] == -1){
+      return document.getElementById("win").innerHTML = "Win!!!";
+    }
+
   }
   //Set apart keypressed and released as two different events
   window.addEventListener("keydown", keysPressed, false);
