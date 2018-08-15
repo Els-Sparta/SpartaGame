@@ -1,7 +1,6 @@
 $(function(event){
   //Reference to the html element
   // var canvas = document.getElementById("#canvas")
-  var turn = 0;
   var canvas = $("#canvas");
   //Set a 2d array for the board
   var board = [
