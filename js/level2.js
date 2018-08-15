@@ -1,20 +1,21 @@
 $(function(event){
   //Reference to the html element
   // var canvas = document.getElementById("#canvas")
-  var turn = 0;
   var canvas = $("#canvas");
   //Set a 2d array for the board
   var board = [
-      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
-      [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-      [ 0, 0, 0, 0, 1, 1, 1, 0, 1, 0],
-      [ 0, 1, 1, 0, 0, 0, 1, 0, 1, 0],
-      [ 0, 0, 1, 1, 1, 1, 1, 0, 1, 0],
-      [ 1, 0, 1, 0, 0, 0, 1, 0, 1, 0],
-      [ 1, 0, 1, 0, 1, 0, 1, 0, 0, 0],
-      [ 1, 0, 1, 0, 1, 0, 0, 1, 1, 0],
-      [ 1, 0, -1, 0, 1, 1, 0, 0, 0, 0]
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+      [ 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0],
+      [ 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0],
+      [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [ 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0],
+      [ 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0],
+      [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+      [ 0, 1, 0, 1, 0, 1,-1, 1, 0, 1, 0, 1],
+      [ 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1],
+      [ 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
   //Set a variable for movement along x and y axis
   var player = {
@@ -63,6 +64,7 @@ $(function(event){
     if ((y >= 0) && (y < board.length) && (x >= 0) && (x < board[y].length) && (board[y][x] != 1) && (board[y][x] != -1)){
       return true;
     }
+    //check for win.
     else if(board[y][x] == -1){
       return (document.getElementById("win").innerHTML = "Win!!!") && (document.getElementById("victory").innerHTML = "Time for the victory lap!!!")
     }
