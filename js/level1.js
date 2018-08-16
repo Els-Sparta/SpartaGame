@@ -20,6 +20,11 @@ $(function(event){
       x: 0,
       y: 0
   }
+  var time = 0;
+  var timer = setInterval(function(){
+    time++;
+    $('.time').html(time);
+  }, 1000)
   //function which will draw the maze, player and exit
   function draw(){
     var width =  canvas.width();
@@ -63,10 +68,11 @@ $(function(event){
       return true;
     }
     else if(board[y][x] == -1){
+      clearInterval(timer);
       return (document.getElementById("win").innerHTML = "Win!!!") && (document.getElementById("victory").innerHTML = "Time for the victory lap!!!")
     }
-
   }
+
   //Set apart keypressed and released as two different events
   window.addEventListener("keydown", keysPressed, false);
   window.addEventListener("keyup", keysReleased, false);
@@ -102,6 +108,4 @@ $(function(event){
     //mark keys that are keysReleased
     keys[e.keyCode] = false;
   }
-  //call the draw function
-  draw();
 })

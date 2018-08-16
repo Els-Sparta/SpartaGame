@@ -1,16 +1,24 @@
 #canvas {
-    border: 1px solid red;
-    padding: 5px;
-    margin-left: auto;
-    margin-right: auto;
+  border: 1px solid red;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 body {
-    background: black;
-    padding: 5px;
-    color: white;
+  background: black;
+  padding: 5px;
+  color: white;
 }
 
 .container {
   text-align: center;
 }
+
+/* .canvas-left {
+  margin: 10px 30px;
+}
+
+.info {
+  float:left;
+} */
