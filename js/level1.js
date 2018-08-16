@@ -1,7 +1,9 @@
 $(function(event){
   //Reference to the html element
+  // $("#start").on("click" draw());
   // var canvas = document.getElementById("#canvas")
   var canvas = $("#canvas");
+
   //Set a 2d array for the board
   var board = [
       [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -16,6 +18,7 @@ $(function(event){
       [ 1, 0, -1, 0, 1, 1, 0, 0, 0, 0]
   ];
   //Set a variable for movement along x and y axis
+  var turn = 0
   var player = {
       x: 0,
       y: 0
@@ -59,20 +62,23 @@ $(function(event){
       context.fillStyle = "rgba(255, 204, 0, 1)";
       context.arc(player.x*blockSize+half, player.y*blockSize+half, half, 0, 2*Math.PI);
       context.fill();
+      //set timer
   }
   //Call the draw function so the maze, player and exit can be drawn on cavas
   draw();
   //function checks if the new space is open or a wall
+  // local.Storage.setItem("Player 1", timer);
   function canMove(x, y){
     if ((y >= 0) && (y < board.length) && (x >= 0) && (x < board[y].length) && (board[y][x] != 1) && (board[y][x] != -1)){
       return true;
     }
     else if(board[y][x] == -1){
+      // leaderboard();
       clearInterval(timer);
-      return (document.getElementById("win").innerHTML = "Win!!!") && (document.getElementById("victory").innerHTML = "Time for the victory lap!!!")
+      return (document.getElementById("win").innerHTML = "You have completed the maze!") && (document.getElementById("victory").innerHTML = "Time for a victory lap!!!")
+      // && (document.getElementById("result".innerHTML=localStorage.getItem(timer)))
     }
   }
-
   //Set apart keypressed and released as two different events
   window.addEventListener("keydown", keysPressed, false);
   window.addEventListener("keyup", keysReleased, false);

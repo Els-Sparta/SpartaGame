@@ -22,6 +22,11 @@ $(function(event){
       x: 0,
       y: 0
   }
+  var time = 0;
+  var timer = setInterval(function(){
+    time++;
+    $('.time').html(time);
+  }, 1000)
   //function which will draw the maze, player and exit
   function draw(){
     var width =  canvas.width();
@@ -66,6 +71,7 @@ $(function(event){
     }
     //check for win.
     else if(board[y][x] == -1){
+      clearInterval(timer);
       return (document.getElementById("win").innerHTML = "Win!!!") && (document.getElementById("victory").innerHTML = "Time for the victory lap!!!")
     }
 
