@@ -93,12 +93,12 @@ $(function(event){
       return true;
     }
     else if(board[y][x] == -1){
-      $("#win").html("You have completed the maze!");
       //if player1 is set as true, run this if statement
       if(player1==true){
+        $("#win").html("Player 2 it's your turn!");
         //set score1 as player1's score
         score1 = time;
-        console.log(score1);
+        displayScorePlayer1();
         //Stop the timer by clearing the interval
         clearInterval(timer);
         //reset time back to 0 for next player
@@ -112,7 +112,7 @@ $(function(event){
       if(player2==true){
         //set score2 as player2's score
         score2 = time;
-        console.log(score2);
+        displayScorePlayer2();
         //Stop the timer to signal end of the game
         clearInterval(timer);
       }
@@ -120,11 +120,16 @@ $(function(event){
       if(player1==false && player2==true){
         //Checks if player1 has won the game
         if(score1 < score2){
-          $("#win").html("Player1 win")
+          $("#win").html("Player 1 you win!!!");
+          $("#victory").html("Time for your Vicotry Lap!!!");
         }
         //Checks if player2 has won the game
         else if(score2 < score1){
-          $("#win").html("Player2 win")
+          $("#win").html("Player 2 you win!!!");
+          $("#victory").html("Time for your Vicotry Lap!!!");
+        }
+        else if(score1 = score2){
+          $("#win").html("Would you look at that...It's a draw");
         }
       }
       //Calls the reset player function, which resets the character back to starting position
@@ -159,7 +164,7 @@ $(function(event){
       player.y++;
     }
     //Stop the page from using the default input of keyboard inputs
-    e.preventDefault()
+    e.preventDefault();
     // calls the draw function to draw the movement
     draw();
   }
@@ -175,7 +180,10 @@ $(function(event){
       y: 0
     }
   }
-  function displayScore(){
-
+  function displayScorePlayer1(){
+    $("#score1").append(score1);
+  }
+  function displayScorePlayer2(){
+    $("#score2").append(score2);
   }
 })
