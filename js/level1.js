@@ -36,10 +36,6 @@ $(function(event){
       time++;
       $('.time').html(time);
     }, 1000)
-    // if(firstscore){
-    //   clearInterval(timer);
-    // }
-    // console.log(timer);
   }
   //function which will draw the maze, player and exit
   function draw(firstdude){
@@ -83,62 +79,59 @@ $(function(event){
       context.fillStyle = "rgba(255, 204, 0, 1)";
       context.arc(player.x*blockSize+half, player.y*blockSize+half, half, 0, 2*Math.PI);
       context.fill();
-      //set timer
   }
   //Call the draw function so the maze, player and exit can be drawn on cavas
   $('#start').on('click', function(){
+    //runs the draw function so that player1 is playing
     draw(1);
+    //start the timer for player1
     scoreTimer();
   });
   //function checks if the new space is open or a wall
-  // local.Storage.setItem("Player 1", timer);
   function canMove(x, y){
     if ((y >= 0) && (y < board.length) && (x >= 0) && (x < board[y].length) && (board[y][x] != 1) && (board[y][x] != -1)){
       return true;
     }
     else if(board[y][x] == -1){
       $("#win").html("You have completed the maze!");
-      // debugger;
+      //if player1 is set as true, run this if statement
       if(player1==true){
+        //set score1 as player1's score
         score1 = time;
         console.log(score1);
-        // localStorage.setItem("player1", "" + $(".time").text() + "");
+        //Stop the timer by clearing the interval
         clearInterval(timer);
+        //reset time back to 0 for next player
         time = 0;
+        //Start the timer again for player2
         scoreTimer();
+        //set player1 as false so that this if statement won't run the next time player2 plays
         player1 = false;
       }
+      //if player2 is set as true, run this statement
       if(player2==true){
-        // debugger;
+        //set score2 as player2's score
         score2 = time;
         console.log(score2);
+        //Stop the timer to signal end of the game
         clearInterval(timer);
-        // var player2score = parseInt($(".time").text()) - parseInt(localStorage.getItem("player1"));
-        // console.log(player2score);
-        // localStorage.setItem("player2", player2score);
       }
-      // $("#victory").html("Time for a victory lap!!!");
-
+      //If player1 is false and player2 is true, this runs the end of game if statement
       if(player1==false && player2==true){
-        // clearInterval(timer);
+        //Checks if player1 has won the game
         if(score1 < score2){
           $("#win").html("Player1 win")
         }
+        //Checks if player2 has won the game
         else if(score2 < score1){
           $("#win").html("Player2 win")
         }
       }
+      //Calls the reset player function, which resets the character back to starting position
       resetPlayer();
-      // scoreTimer();
+      //runs the game as player2
       draw(2);
-      // reset these:-
-      // document.getElementById("win").innerHTML = "You have completed the maze!"
-      // document.getElementById("victory").innerHTML = "Time for a victory lap!!!"
-      // show star button again
-      // restart or next players
-      // && (document.getElementById("result".innerHTML=localStorage.getItem(timer)))
     }
-
   }
   //Set apart keypressed and released as two different events
   document.addEventListener("keydown", keysPressed, false);
@@ -175,6 +168,7 @@ $(function(event){
     //mark keys that are keysReleased
     keys[e.keyCode] = false;
   }
+  //function which resets the players position back to the starting point
   function resetPlayer(){
     player = {
       x: 0,
@@ -182,6 +176,6 @@ $(function(event){
     }
   }
   function displayScore(){
-    
+
   }
 })
