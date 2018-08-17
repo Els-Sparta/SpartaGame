@@ -181,4 +181,7 @@ $(function(event){
       y: 0
     }
   }
+  function displayScore(){
+    
+  }
 })
