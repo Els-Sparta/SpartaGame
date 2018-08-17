@@ -1,14 +1,16 @@
 #canvas {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   padding: 5px;
   margin-left: auto;
   margin-right: auto;
+  background: black;
 }
 
 body {
-  background: black;
+  font-family: sans-serif;
   padding: 5px;
-  color: white;
+  background-image: url("../img/bodyBackground.jpg");
+  background-size: contain;
 }
 
 h1 {
@@ -18,21 +20,28 @@ h1 {
 .menu-item{
   padding: 5px;
   background-color: white;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 3px;
   font-size: 20px;
 }
 
 .container {
-  margin: 50px 400px;
+  padding: 10px;
+  color: white;
+  margin: auto;
+  max-width: 1000px;
   text-align: center;
-  border: 1px solid red;
 }
 
-/* .canvas-left {
-  margin: 10px 30px;
+.leaderboarddiv {
+  display: inline-block;
+  float: left;
+  padding: 10px 20px;
+  /* border: solid 1px red; */
+  margin: 10px 10px 10px 50px;
 }
 
-.info {
-  float:left;
-} */
+.arrowkeys {
+  width: 20%;
+  height: 20%;
+}
