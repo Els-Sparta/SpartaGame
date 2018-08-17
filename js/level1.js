@@ -3,6 +3,7 @@ $(function(event){
   // $("#start").on("click" draw());
   // var canvas = document.getElementById("#canvas")
   var canvas = $("#canvas");
+  // var scores = getElementByI
 
   //Set a 2d array for the board
   var board = [
@@ -19,17 +20,37 @@ $(function(event){
   ];
   //Set a variable for movement along x and y axis
   var turn = 0
+  var player1 = false;
+  var player2 = false;
+  var score1;
+  var score2;
   var player = {
       x: 0,
       y: 0
   }
+  var timer;
+  //whenever this function is called, set timer to run and if a parameter is being passed through, clear the interval.
   var time = 0;
-  var timer = setInterval(function(){
-    time++;
-    $('.time').html(time);
-  }, 1000)
+  function scoreTimer(){
+    timer = setInterval(function(){
+      time++;
+      $('.time').html(time);
+    }, 1000)
+    // if(firstscore){
+    //   clearInterval(timer);
+    // }
+    // console.log(timer);
+  }
   //function which will draw the maze, player and exit
-  function draw(){
+  function draw(firstdude){
+    $('#start').hide();
+    if (firstdude==1) {
+      // debugger;
+      player1 = true;
+    }
+    else if (firstdude == 2) {
+      player2 = true;
+    }
     var width =  canvas.width();
     var blockSize = width/board.length;
     var context = canvas[0].getContext('2d');
@@ -65,7 +86,10 @@ $(function(event){
       //set timer
   }
   //Call the draw function so the maze, player and exit can be drawn on cavas
-  draw();
+  $('#start').on('click', function(){
+    draw(1);
+    scoreTimer();
+  });
   //function checks if the new space is open or a wall
   // local.Storage.setItem("Player 1", timer);
   function canMove(x, y){
@@ -73,15 +97,52 @@ $(function(event){
       return true;
     }
     else if(board[y][x] == -1){
-      // leaderboard();
-      clearInterval(timer);
-      return (document.getElementById("win").innerHTML = "You have completed the maze!") && (document.getElementById("victory").innerHTML = "Time for a victory lap!!!")
+      $("#win").html("You have completed the maze!");
+      // debugger;
+      if(player1==true){
+        score1 = time;
+        console.log(score1);
+        // localStorage.setItem("player1", "" + $(".time").text() + "");
+        clearInterval(timer);
+        time = 0;
+        scoreTimer();
+        player1 = false;
+      }
+      if(player2==true){
+        // debugger;
+        score2 = time;
+        console.log(score2);
+        clearInterval(timer);
+        // var player2score = parseInt($(".time").text()) - parseInt(localStorage.getItem("player1"));
+        // console.log(player2score);
+        // localStorage.setItem("player2", player2score);
+      }
+      // $("#victory").html("Time for a victory lap!!!");
+
+      if(player1==false && player2==true){
+        // clearInterval(timer);
+        if(score1 < score2){
+          $("#win").html("Player1 win")
+        }
+        else if(score2 < score1){
+          $("#win").html("Player2 win")
+        }
+      }
+      resetPlayer();
+      // scoreTimer();
+      draw(2);
+      // reset these:-
+      // document.getElementById("win").innerHTML = "You have completed the maze!"
+      // document.getElementById("victory").innerHTML = "Time for a victory lap!!!"
+      // show star button again
+      // restart or next players
       // && (document.getElementById("result".innerHTML=localStorage.getItem(timer)))
     }
+
   }
   //Set apart keypressed and released as two different events
-  window.addEventListener("keydown", keysPressed, false);
-  window.addEventListener("keyup", keysReleased, false);
+  document.addEventListener("keydown", keysPressed, false);
+  document.addEventListener("keyup", keysReleased, false);
   //Set an array to store multiple key inputs
   var keys = []
   //function for when the the key which moves the character is pressed
@@ -106,12 +167,18 @@ $(function(event){
     }
     //Stop the page from using the default input of keyboard inputs
     e.preventDefault()
-    // calls the drawTriangle function
+    // calls the draw function to draw the movement
     draw();
   }
   //The funciton which states the key pressed as false when it is released
   function keysReleased(e){
     //mark keys that are keysReleased
     keys[e.keyCode] = false;
+  }
+  function resetPlayer(){
+    player = {
+      x: 0,
+      y: 0
+    }
   }
 })
