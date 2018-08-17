@@ -1,29 +1,32 @@
 $(function(event){
-  //Reference to the html element
-  // var canvas = document.getElementById("#canvas")
+  //set variable for canvas
   var canvas = $("#canvas");
-  //Set a 2d array for the board
+  //set up the board
   var board = [
-      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [ 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
-      [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-      [ 0, 0, 0, 0, 1, 1, 1, 0, 1, 0],
-      [ 0, 1, 1, 0, 0, 0, 1, 0, 1, 0],
-      [ 0, 0, 1, 1, 1, 1, 1, 0, 1, 0],
-      [ 1, 0, 1, 0, 0, 0, 1, 0, 1, 0],
-      [ 1, 0, 1, 0, 1, 0, 1, 0, 0, 0],
-      [ 1, 0, 1, 0, 1, 0, 0, 1, 1, 0],
-      [ 1, 0, -1, 0, 1, 1, 0, 0, 0, 0]
+    [ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [ 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [ 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0],
+    [ 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+    [ 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1],
+    [ 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
+    [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [ 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+    [ 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+    [ 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [ 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [ 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+    [ 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1],
+    [ 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1]
   ];
-  //Set a variable for movement along x and y axis
-  var turn = 0
+  var turn = 0;
   var player1 = false;
   var player2 = false;
   var score1;
   var score2;
   var player = {
-      x: 0,
-      y: 0
+    x: 0,
+    y: 0
   }
   var timer;
   //whenever this function is called, set timer to run and if a parameter is being passed through, clear the interval.
@@ -140,7 +143,7 @@ $(function(event){
   document.addEventListener("keydown", keysPressed, false);
   document.addEventListener("keyup", keysReleased, false);
   //Set an array to store multiple key inputs
-  var keys = []
+  var keys = [];
   //function for when the the key which moves the character is pressed
   function keysPressed(e){
     //store an entry for every key pressed
