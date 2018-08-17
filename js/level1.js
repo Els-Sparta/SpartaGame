@@ -131,6 +131,7 @@ $(function(event){
         else if(score1 = score2){
           $("#win").html("Would you look at that...It's a draw");
         }
+        $("#homepage").html("Back to Homepage");
       }
       //Calls the reset player function, which resets the character back to starting position
       resetPlayer();
