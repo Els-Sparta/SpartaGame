@@ -1,30 +1,32 @@
 $(function(event){
-  //Reference to the html element
+  //set variable for canvas
   var canvas = $("#canvas");
-  //Set a 2d array for the board
+  //set up the board
   var board = [
-      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-      [ 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0],
-      [ 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0],
-      [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
-      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [ 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0],
-      [ 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0],
-      [ 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-      [ 0, 1, 0, 1, 0, 1,-1, 1, 0, 1, 0, 1],
-      [ 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1],
-      [ 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+    [ 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [ 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [ 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0],
+    [ 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+    [ 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1],
+    [ 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
+    [ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
+    [ 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+    [ 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1],
+    [ 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [ 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+    [ 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+    [ 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1],
+    [ 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 1]
   ];
-  //Set a variable for movement along x and y axis
   var turn = 0;
   var player1 = false;
   var player2 = false;
   var score1;
   var score2;
   var player = {
-      x: 0,
-      y: 0
+    x: 0,
+    y: 0
   }
   var timer;
   //whenever this function is called, set timer to run and if a parameter is being passed through, clear the interval.
@@ -125,7 +127,6 @@ $(function(event){
           $("#win").html("Player 2 you win!!!");
           $("#victory").html("Time for your Vicotry Lap!!!");
         }
-        //check if both players have the same score
         else if(score1 = score2){
           $("#win").html("Would you look at that...It's a draw");
         }

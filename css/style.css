@@ -1,16 +1,53 @@
 #canvas {
-    border: 1px solid red;
-    padding: 5px;
-    margin-left: auto;
-    margin-right: auto;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background: black;
 }
 
 body {
-    background: black;
-    padding: 5px;
-    color: white;
+  color: white;
+  font-family: sans-serif;
+  padding: 5px;
+  background-image: url("../img/bodyBackground.jpg");
+  background-size: contain;
+}
+
+h1 {
+  font-size: 50px;
+}
+
+.menu-item{
+  padding: 5px;
+  background-color: white;
+  margin: 3px;
+  font-size: 20px;
 }
 
 .container {
+  padding: 10px;
+  color: white;
+  margin: auto;
+  max-width: 1000px;
   text-align: center;
+}
+
+.leaderboarddiv {
+  display: inline-block;
+  float: left;
+  padding: 10px 20px;
+  margin: 10px 10px 10px 50px;
+}
+
+.arrowkeys {
+  width: 20%;
+  height: 20%;
+}
+
+.button {
+  padding: 5px 10px;
+  text-decoration: none;
+  width: 100px;
+  color: black;
+  background-color: white;
 }
