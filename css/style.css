@@ -1,38 +1,77 @@
 #canvas {
-  border: 1px solid red;
   padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background: black;
+}
+
+body {
+  color: white;
+  padding: 5px;
+  background-image: url("../img/bodyBackground.jpg");
+  height: 730px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 70px;
+  padding:15px 0px;
+}
+
+a {
+}
+
+.menu-item{
+  text-decoration: none;
+  padding: 10px;
+  background-color: white;
+  margin: 3px;
+  font-size: 40px;
+  background-image: url(../img/maze-background1.png);
+}
+
+.container {
+  color: white;
+  margin: auto;
+  max-width: 1000px;
+  text-align: center;
+}
+.container-fluid {
+  color: white;
+  margin: auto;
+  max-width: 1000px;
+  max-height: 600px;
+  text-align: center;
+  margin-top: 150px;
   margin-left: auto;
   margin-right: auto;
 }
 
-body {
-  background: black;
-  padding: 5px;
-  color: white;
+.leaderboarddiv {
+  display: inline-block;
+  float: left;
+  padding: 10px 20px;
+  margin: 10px 10px 10px 50px;
 }
 
-h1 {
-  font-size: 50px;
+.arrowkeys {
+  width: 20%;
+  height: 20%;
+  padding: 20px 0px;
 }
 
-.menu-item{
-  padding: 5px;
-  background-color: white;
-  border: 1px solid red;
-  margin: 3px;
-  font-size: 20px;
+.time {
+  padding-top:30px;
+  font-size: 30px;
+
 }
 
-.container {
-  margin: 50px 400px;
-  text-align: center;
-  border: 1px solid red;
+#button2 {
+  display: none;
 }
 
-/* .canvas-left {
-  margin: 10px 30px;
+#button1 {
+  display: none;
 }
-
-.info {
-  float:left;
-} */

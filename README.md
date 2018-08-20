@@ -23,7 +23,25 @@
 * You could include some fancy animations in your game...
 * You could look into HTML5 Audio and include some snazzy sound effects...
 
+## Sprint Timeline
+* 1st Sprint - Wednesday Morning
+* 2nd Spring -  Friday Afternoon
+
+## File Structure
+```
++-- project-online
+| +-- js
+|   -- main.js
+| +-- css
+|   -- style.css
+| +--img
+| -- index.html
+```
+
 ## User Story
-* Work together with another player to get each other to their own respective exits.
-* Collect extra points along the way
-* Try to complete the level in the shortest amount of time
+
+### Users will be able to use the arrow keys to navigate a character through a maze to an endpoint.
+* Play against another player to complete the maze as faster than the other player
+* Complete more than one level to see who the better player is
+
+## Wireframes

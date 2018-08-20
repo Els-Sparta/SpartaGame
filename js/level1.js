@@ -1,14 +1,11 @@
 $(function(event){
   //Reference to the html element
-  // $("#start").on("click" draw());
   // var canvas = document.getElementById("#canvas")
   var canvas = $("#canvas");
-  // var scores = getElementByI
-
   //Set a 2d array for the board
   var board = [
       [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+      [ 1, 1, 1, 1, 0, 1, 1, 1, 1, 0],
       [ 1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
       [ 0, 0, 0, 0, 1, 1, 1, 0, 1, 0],
       [ 0, 1, 1, 0, 0, 0, 1, 0, 1, 0],
@@ -28,6 +25,14 @@ $(function(event){
       x: 0,
       y: 0
   }
+  var pixel = new Image();
+  pixel.src = "../img/pixel.png";
+  //adding wall image to set to maze wall
+  var wall = new Image();
+  wall.src = "../img/wall2.png";
+  //adding food image to set to end point
+  var food = new Image();
+  food.src = "../img/food.png"
   var timer;
   //whenever this function is called, set timer to run and if a parameter is being passed through, clear the interval.
   var time = 0;
@@ -36,16 +41,11 @@ $(function(event){
       time++;
       $('.time').html(time);
     }, 1000)
-    // if(firstscore){
-    //   clearInterval(timer);
-    // }
-    // console.log(timer);
   }
   //function which will draw the maze, player and exit
   function draw(firstdude){
     $('#start').hide();
     if (firstdude==1) {
-      // debugger;
       player1 = true;
     }
     else if (firstdude == 2) {
@@ -62,83 +62,82 @@ $(function(event){
       for(var x = 0; x < board[y].length; x++){
         //Draw a wall whenever x = 1,
         if(board[y][x] === 1){
-          context.fillRect(x*blockSize, y*blockSize, blockSize, blockSize);
+          context.drawImage(wall, x*blockSize, y*blockSize, blockSize, blockSize)
         }
         //Draw the goal where it is '-1' in the array
         else if(board[y][x] === -1){
           context.beginPath();
-          context.lineWidth = 5;
-          context.strokeStyle = "red";
-          context.moveTo(x*blockSize, y*blockSize);
-          context.lineTo((x+1)*blockSize, (y+1)*blockSize);
-          context.moveTo(x*blockSize, (y+1)*blockSize);
-          context.lineTo((x+1)*blockSize, y*blockSize);
-          context.stroke();
+          context.drawImage(food, x*blockSize, y*blockSize, blockSize, blockSize)
         }
       }
     }
-      //Draw the player
-      context.beginPath();
-      var half = blockSize/2;
-      context.fillStyle = "rgba(255, 204, 0, 1)";
-      context.arc(player.x*blockSize+half, player.y*blockSize+half, half, 0, 2*Math.PI);
-      context.fill();
-      //set timer
+    //Draw the player
+    context.beginPath();
+    var half = blockSize/2;
+    context.fillStyle = "rgba(255, 204, 0, 1)";
+    context.arc(player.x*blockSize+half, player.y*blockSize+half, half, 0, 2*Math.PI);
+    context.fill();
   }
   //Call the draw function so the maze, player and exit can be drawn on cavas
   $('#start').on('click', function(){
+    //runs the draw function so that player1 is playing
     draw(1);
+    //start the timer for player1
     scoreTimer();
   });
   //function checks if the new space is open or a wall
-  // local.Storage.setItem("Player 1", timer);
   function canMove(x, y){
     if ((y >= 0) && (y < board.length) && (x >= 0) && (x < board[y].length) && (board[y][x] != 1) && (board[y][x] != -1)){
       return true;
     }
     else if(board[y][x] == -1){
-      $("#win").html("You have completed the maze!");
-      // debugger;
+      //if player1 is set as true, run this if statement
       if(player1==true){
+        $("#win").html("Player 2 it's your turn!");
+        //set score1 as player1's score
         score1 = time;
-        console.log(score1);
-        // localStorage.setItem("player1", "" + $(".time").text() + "");
+        displayScorePlayer1();
+        //Stop the timer by clearing the interval
         clearInterval(timer);
+        //reset time back to 0 for next player
         time = 0;
+        //Start the timer again for player2
         scoreTimer();
+        //set player1 as false so that this if statement won't run the next time player2 plays
         player1 = false;
       }
+      //if player2 is set as true, run this statement
       if(player2==true){
-        // debugger;
+        //set score2 as player2's score
         score2 = time;
-        console.log(score2);
+        displayScorePlayer2();
+        //Stop the timer to signal end of the game
         clearInterval(timer);
-        // var player2score = parseInt($(".time").text()) - parseInt(localStorage.getItem("player1"));
-        // console.log(player2score);
-        // localStorage.setItem("player2", player2score);
       }
-      // $("#victory").html("Time for a victory lap!!!");
-
+      //If player1 is false and player2 is true, this runs the end of game if statement
       if(player1==false && player2==true){
-        // clearInterval(timer);
+        //Checks if player1 has won the game
         if(score1 < score2){
-          $("#win").html("Player1 win")
+          $("#win").html("Player 1 you win!!!");
+          $("#victory").html("Time for your Vicotry Lap!!!");
         }
+        //Checks if player2 has won the game
         else if(score2 < score1){
-          $("#win").html("Player2 win")
+          $("#win").html("Player 2 you win!!!");
+          $("#victory").html("Time for your Vicotry Lap!!!");
         }
+        else if(score1 = score2){
+          $("#win").html("Would you look at that...It's a draw");
+        }
+        $("#button1").css("display", "inline");
+        $("#button2").css("display", "inline");
+        $(".time").css("display", "none");
       }
+      //Calls the reset player function, which resets the character back to starting position
       resetPlayer();
-      // scoreTimer();
+      //runs the game as player2
       draw(2);
-      // reset these:-
-      // document.getElementById("win").innerHTML = "You have completed the maze!"
-      // document.getElementById("victory").innerHTML = "Time for a victory lap!!!"
-      // show star button again
-      // restart or next players
-      // && (document.getElementById("result".innerHTML=localStorage.getItem(timer)))
     }
-
   }
   //Set apart keypressed and released as two different events
   document.addEventListener("keydown", keysPressed, false);
@@ -165,8 +164,9 @@ $(function(event){
     if ((keys[40]) && canMove(player.x, player.y+1)){
       player.y++;
     }
+
     //Stop the page from using the default input of keyboard inputs
-    e.preventDefault()
+    e.preventDefault();
     // calls the draw function to draw the movement
     draw();
   }
@@ -175,10 +175,21 @@ $(function(event){
     //mark keys that are keysReleased
     keys[e.keyCode] = false;
   }
+  //function which resets the players position back to the starting point
   function resetPlayer(){
     player = {
       x: 0,
       y: 0
     }
+  }
+  function displayScorePlayer1(){
+    $("#score1").append(score1);
+  }
+  function displayScorePlayer2(){
+    $("#score2").append(score2);
+  }
+  function sound(src){
+    this.sound = document.createElement("audio")
+
   }
 })
