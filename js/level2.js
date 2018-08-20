@@ -72,12 +72,12 @@ $(function(event){
         }
       }
     }
-      //Draw the player
-      context.beginPath();
-      var half = blockSize/2;
-      context.fillStyle = "rgba(255, 204, 0, 1)";
-      context.arc(player.x*blockSize+half, player.y*blockSize+half, half, 0, 2*Math.PI);
-      context.fill();
+    //Draw the player
+    context.beginPath();
+    var half = blockSize/2;
+    context.fillStyle = "rgba(255, 204, 0, 1)";
+    context.arc(player.x*blockSize+half, player.y*blockSize+half, half, 0, 2*Math.PI);
+    context.fill();
   }
   //Call the draw function so the maze, player and exit can be drawn on cavas
   $('#start').on('click', function(){
