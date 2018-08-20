@@ -30,8 +30,10 @@ $(function(event){
   }
   var pixel = new Image();
   pixel.src = "../img/pixel.png";
+  //adding wall image to set to maze wall
   var wall = new Image();
   wall.src = "../img/wall2.png";
+  //adding food image to set to end point
   var food = new Image();
   food.src = "../img/food.png"
   var timer;

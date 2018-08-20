@@ -27,8 +27,10 @@ $(function(event){
   }
   var pixel = new Image();
   pixel.src = "../img/pixel.png";
+  //adding wall image to set to maze wall
   var wall = new Image();
   wall.src = "../img/wall2.png";
+  //adding food image to set to end point
   var food = new Image();
   food.src = "../img/food.png"
   var timer;
@@ -162,6 +164,7 @@ $(function(event){
     if ((keys[40]) && canMove(player.x, player.y+1)){
       player.y++;
     }
+
     //Stop the page from using the default input of keyboard inputs
     e.preventDefault();
     // calls the draw function to draw the movement
@@ -184,5 +187,9 @@ $(function(event){
   }
   function displayScorePlayer2(){
     $("#score2").append(score2);
+  }
+  function sound(src){
+    this.sound = document.createElement("audio")
+
   }
 })
