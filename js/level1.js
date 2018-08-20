@@ -25,6 +25,14 @@ $(function(event){
       x: 0,
       y: 0
   }
+  var pixel = new Image();
+  pixel.src = "../img/pixel.png";
+  //adding wall image to set to maze wall
+  var wall = new Image();
+  wall.src = "../img/wall2.png";
+  //adding food image to set to end point
+  var food = new Image();
+  food.src = "../img/food.png"
   var timer;
   //whenever this function is called, set timer to run and if a parameter is being passed through, clear the interval.
   var time = 0;
@@ -54,18 +62,12 @@ $(function(event){
       for(var x = 0; x < board[y].length; x++){
         //Draw a wall whenever x = 1,
         if(board[y][x] === 1){
-          context.fillRect(x*blockSize, y*blockSize, blockSize, blockSize);
+          context.drawImage(wall, x*blockSize, y*blockSize, blockSize, blockSize)
         }
         //Draw the goal where it is '-1' in the array
         else if(board[y][x] === -1){
           context.beginPath();
-          context.lineWidth = 5;
-          context.strokeStyle = "red";
-          context.moveTo(x*blockSize, y*blockSize);
-          context.lineTo((x+1)*blockSize, (y+1)*blockSize);
-          context.moveTo(x*blockSize, (y+1)*blockSize);
-          context.lineTo((x+1)*blockSize, y*blockSize);
-          context.stroke();
+          context.drawImage(food, x*blockSize, y*blockSize, blockSize, blockSize)
         }
       }
     }
@@ -127,8 +129,9 @@ $(function(event){
         else if(score1 = score2){
           $("#win").html("Would you look at that...It's a draw");
         }
-        $("#homepage").html("Back to Homepage");
-        $("#level2").html("Continue to next maze...")
+        $("#button1").css("display", "inline");
+        $("#button2").css("display", "inline");
+        $(".time").css("display", "none");
       }
       //Calls the reset player function, which resets the character back to starting position
       resetPlayer();
@@ -161,6 +164,7 @@ $(function(event){
     if ((keys[40]) && canMove(player.x, player.y+1)){
       player.y++;
     }
+
     //Stop the page from using the default input of keyboard inputs
     e.preventDefault();
     // calls the draw function to draw the movement
@@ -183,5 +187,9 @@ $(function(event){
   }
   function displayScorePlayer2(){
     $("#score2").append(score2);
+  }
+  function sound(src){
+    this.sound = document.createElement("audio")
+
   }
 })

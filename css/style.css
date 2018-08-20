@@ -7,29 +7,46 @@
 
 body {
   color: white;
-  font-family: sans-serif;
   padding: 5px;
   background-image: url("../img/bodyBackground.jpg");
-  background-size: contain;
+  height: 730px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 70px;
+  padding:15px 0px;
+}
+
+a {
 }
 
 .menu-item{
-  padding: 5px;
+  text-decoration: none;
+  padding: 10px;
   background-color: white;
   margin: 3px;
-  font-size: 20px;
+  font-size: 40px;
+  background-image: url(../img/maze-background1.png);
 }
 
 .container {
-  padding: 10px;
   color: white;
   margin: auto;
   max-width: 1000px;
   text-align: center;
+}
+.container-fluid {
+  color: white;
+  margin: auto;
+  max-width: 1000px;
+  max-height: 600px;
+  text-align: center;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .leaderboarddiv {
@@ -42,12 +59,19 @@ h1 {
 .arrowkeys {
   width: 20%;
   height: 20%;
+  padding: 20px 0px;
 }
 
-.button {
-  padding: 5px 10px;
-  text-decoration: none;
-  width: 100px;
-  color: black;
-  background-color: white;
+.time {
+  padding-top:30px;
+  font-size: 30px;
+
+}
+
+#button2 {
+  display: none;
+}
+
+#button1 {
+  display: none;
 }
